@@ -6,7 +6,13 @@
 import scrapy
 
 
-class RedditButlerItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class PostItem(scrapy.Item):
+    #All data being scraped from each reddit post. Spider will collect from each post off front page of old.reddit.com
+    title = scrapy.Field()
+    user = scrapy.Field()
+    upvotes = scrapy.Field()
+    comments = scrapy.Field()
+    subreddit = scrapy.Field()
+    content_link = scrapy.Field()
+    awards = scrapy.Field()
+    time = scrapy.Field()
