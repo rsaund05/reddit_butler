@@ -15,3 +15,8 @@ app.py can take a specific list of subs (case sensitive) to scrape like so:
 ```
 python app.py pics AskReddit Food
 ```
+
+Data is written to 
+```
+./output/output.jsonl
+```
