@@ -13,7 +13,7 @@ class butler(scrapy.Spider):
 
     def __init__(self, *args, **kwargs): 
         super(butler, self).__init__(*args, **kwargs) 
-        start_urls = kwargs.get('start_urls').split(',')
+        self.start_urls = kwargs.get('start_urls').split(',')
 
     
     def parse(self, response):

@@ -10,7 +10,12 @@ def main():
         subprocess.run(["scrapy", "crawl", "butler", "-s", "CLOSESPIDER_ITEMCOUNT=20","-a", "start_urls=https://old.reddit.com", "-O", "./output/output.jsonl"])
     else:
         #build list of subs to gather
-        subprocess.run(["scrapy", "crawl", "butler", "-s", "CLOSESPIDER_ITEMCOUNT=20", "-a", "start_urls=" , "-O", "./output/output.jsonl"])
+        sublist = []
+        for i in sys.argv:
+            if i != "app.py":
+                sublist.append("https://old.reddit.com/r/" + i)
+        subs = ','.join(sublist)
+        subprocess.run(["scrapy", "crawl", "butler", "-s", "CLOSESPIDER_ITEMCOUNT=20", "-a", "start_urls=" + subs, "-O", "./output/output.jsonl"])
 
 if __name__ == "__main__":
     main()

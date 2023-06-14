@@ -7,8 +7,11 @@ Scrapy must be installed via PIP before using.
 pip install scrapy
 ```
 
-From the root directory, run the following command:
+From the root directory, run the following command. Giving no subreddits will run the spider on the homepage:
 ```
-python app.py https://old.reddit.com 
+python app.py
 ```
-app.py can take a list of urls, seperated by a comma
+app.py can take a specific list of subs (case sensitive) to scrape like so:
+```
+python app.py pics AskReddit Food
+```
