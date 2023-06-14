@@ -9,5 +9,6 @@ pip install scrapy
 
 From the root directory, run the following command:
 ```
-scrapy crawl butler -s CLOSESPIDER_ITEMCOUNT=20 -o ./output/output.jsonl
+python app.py https://old.reddit.com 
 ```
+app.py can take a list of urls, seperated by a comma

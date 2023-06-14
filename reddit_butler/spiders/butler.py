@@ -9,8 +9,11 @@ import re
 
 class butler(scrapy.Spider):
     name = "butler"
-    start_urls = ['https://old.reddit.com']
 
+    def __init__(self, *args, **kwargs): 
+      super(butler, self).__init__(*args, **kwargs) 
+      self.start_urls = kwargs.get('start_urls').split(',')
+    
     def parse(self, response):
         
         def format_comment(x):
