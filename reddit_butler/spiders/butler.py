@@ -11,7 +11,7 @@ class butler(scrapy.Spider):
     name = "butler"
     default = ['https://old.reddit.com']
 
-    def __init__(self, *args, **kwargs): 
+    def __init__(self, *args, **kwargs): #Pull in comma seperated list of URLs to scan
         super(butler, self).__init__(*args, **kwargs) 
         self.start_urls = kwargs.get('start_urls').split(',')
 
