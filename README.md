@@ -11,9 +11,9 @@ From the root directory, run the following command. Giving no subreddits will ru
 ```
 python app.py
 ```
-app.py can take a specific list of subs (case sensitive) to scrape like so:
+app.py can take a specific list of subs (NOT case sensitive) to scrape like so:
 ```
-python app.py pics AskReddit Food
+python app.py pics askreddit food
 ```
 
 Data is written to 
