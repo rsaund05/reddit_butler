@@ -1,5 +1,8 @@
 # reddit_butler
-Personal project web scraper for reddit.com
+Basic command line scraper for old.reddit.com. 
+Just a basic html scraper, doesn't touch the dreaded Reddit API ;)
+Data is outputted in json, so its easy to integrate with other applications.
+NOTE: In order to function, reddit_butler has to ignore robots.txt, so YMMV if you decide to use or implement this, as your IP can be banned if you make too many requests.
 
 ### How to use
 Scrapy must be installed via PIP before using.
@@ -7,7 +10,8 @@ Scrapy must be installed via PIP before using.
 pip install scrapy
 ```
 
-From the root directory, run the following command. Giving no subreddits will run the spider on the homepage:
+From the root directory, run the following command, or envoke your installed Python runtime with app.py.
+Giving no subreddits will run the spider on the homepage:
 ```
 python app.py
 ```
