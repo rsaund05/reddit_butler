@@ -1,11 +1,10 @@
 import scrapy
-from reddit_butler.items import PostItem
+import re
 from scrapy.loader import ItemLoader
 from scrapy.loader.processors import MapCompose, Join
 from scrapy.http.request import Request
 
-import datetime
-import re
+from reddit_butler.items import PostItem
 
 class butler(scrapy.Spider):
     name = "butler"
@@ -24,16 +23,16 @@ class butler(scrapy.Spider):
         
         next_selector = response.xpath('//span[@class="next-button"]/a/@href')
         for p in response.xpath('//div[@id="siteTable"]/div[contains(@class, "thing")]'):
-            l = ItemLoader(item=PostItem(), selector=p)
-            l.add_xpath('title', ['.//a[@class="title may-blank "]/text()', './/a[@class="title may-blank outbound"]/text()'], MapCompose(str.strip, str.title))
-            l.add_xpath('user','.//p[@class="tagline "]/a[1]/text()')
-            l.add_xpath('upvotes','.//div[@class="score likes"]/@title', MapCompose(int))
-            l.add_xpath('comments','.//a[contains(@data-event-action, "comments")]/text()', MapCompose(lambda x:format_comment(x)))
-            l.add_xpath('subreddit', './/p[@class="tagline "]/a[2]/text()')
-            l.add_xpath('content_link', './/a[contains(@data-event-action, "title")]/@href')
-            l.add_xpath('awards', ['.//a[@class="awarding-link"]/@data-count', './/a[@class="awarding-show-more-link"]/text()'], MapCompose(lambda x: format_comment(x)))
-            l.add_xpath('time', './/time/@datetime')
-            yield l.load_item()
+            i = ItemLoader(item=PostItem(), selector=p)
+            i.add_xpath('title', ['.//a[@class="title may-blank "]/text()', './/a[@class="title may-blank outbound"]/text()'], MapCompose(str.strip, str.title))
+            i.add_xpath('user','.//p[@class="tagline "]/a[1]/text()')
+            i.add_xpath('upvotes','.//div[@class="score likes"]/@title', MapCompose(int))
+            i.add_xpath('comments','.//a[contains(@data-event-action, "comments")]/text()', MapCompose(lambda x:format_comment(x)))
+            i.add_xpath('subreddit', './/p[@class="tagline "]/a[2]/text()')
+            i.add_xpath('content_link', './/a[contains(@data-event-action, "title")]/@href')
+            i.add_xpath('awards', ['.//a[@class="awarding-link"]/@data-count', './/a[@class="awarding-show-more-link"]/text()'], MapCompose(lambda x: format_comment(x)))
+            i.add_xpath('time', './/time/@datetime')
+            yield i.load_item()
 
         for url in next_selector.extract():
             yield Request(url, callback=self.parse)

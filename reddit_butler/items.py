@@ -8,6 +8,8 @@ import scrapy
 
 class PostItem(scrapy.Item):
     #All data being scraped from each reddit post. Spider will collect from each post off front page of old.reddit.com
+    #front page of all subreddits contains a siteTable that conatins all the post cards
+    #siteTable stores 'things'
     title = scrapy.Field()
     user = scrapy.Field()
     upvotes = scrapy.Field()

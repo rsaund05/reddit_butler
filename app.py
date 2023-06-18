@@ -15,7 +15,7 @@ def main():
             if i != "app.py":
                 sublist.append("https://old.reddit.com/r/" + i)
         subs = ','.join(sublist) #list of URLs built on inputted subreddits, TODO: Make more secure
-        subprocess.run(["scrapy", "crawl", "butler", "-s", "CLOSESPIDER_ITEMCOUNT=20", "-a", "start_urls=" + subs, "-O", "./output/output.jsonl"])
+        subprocess.run(["scrapy", "crawl", "butler", "-s", "CLOSESPIDER_ITEMCOUNT=1", "-a", "start_urls=" + subs, "-O", "./output/output.jsonl"])
 
 if __name__ == "__main__":
     main()
