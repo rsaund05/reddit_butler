@@ -15,7 +15,7 @@ def main():
         subs = ','.join(sublist) #stringified list of URLs sepereated by comma
     else:
         subs = "https://old.reddit.com/" #no inputted subreddits, crawl front page instead
-    subprocess.run(["scrapy", "crawl", "butler", "-s", "CLOSESPIDER_ITEMCOUNT=100", "-a", "start_urls=" + subs, "-O", "./output/output.jsonl"])
+    subprocess.run(["scrapy", "crawl", "butler", "-s", "CLOSESPIDER_ITEMCOUNT=50", "-a", "start_urls=" + subs, "-O", "./output/output.jsonl"])
 
 if __name__ == "__main__":
     main()
