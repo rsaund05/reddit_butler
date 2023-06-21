@@ -13,7 +13,7 @@ def main():
         '-s', 
         type=str,
         nargs='+',
-        help='list of subreddits to scan',
+        help='optional list of subreddits to scan. Scans homepage if nothing is passed in.',
         default=[]
     )
     args = parser.parse_args()
