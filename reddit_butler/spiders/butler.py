@@ -30,6 +30,7 @@ class butler(scrapy.Spider):
             i.add_xpath('upvotes','.//div[@class="score likes"]/@title', MapCompose(int))
             i.add_xpath('comments','.//a[contains(@data-event-action, "comments")]/text()', MapCompose(lambda x:format_comment(x)))
             i.add_xpath('subreddit', './/p[@class="tagline "]/a[2]/text()')
+            i.add_xpath('comments_link', './/ul[@class="flat-list buttons"]/li[@class="first"]/@href')
             i.add_xpath('content_link', './/a[contains(@data-event-action, "title")]/@href')
             i.add_xpath('awards', ['.//a[@class="awarding-link"]/@data-count', './/a[@class="awarding-show-more-link"]/text()'], MapCompose(lambda x: format_comment(x)))
             i.add_xpath('time', './/time/@datetime')

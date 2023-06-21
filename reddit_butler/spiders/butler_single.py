@@ -8,17 +8,11 @@ from reddit_butler.items import PostItem
 from reddit_butler.items import PostSingleItem
 
 class butler_single(scrapy.Spider):
-    name = "butler"
-    default = ['https://old.reddit.com']
+    name = "butler_single"
 
-    # def __init__(self, *args, **kwargs): #Pull in comma seperated list of URLs to scan
-    #     super(butler_single, self).__init__(*args, **kwargs) 
-    #     self.start_urls = kwargs.get('start_urls').split(',')
-
-    
     def parse(self, response):
         for p in response.xpath('//div[@id="siteTable"]/div[contains(@class, "thing")]'):
-            i = ItemLoader(item=PostItem(), selector=p)
+            i = ItemLoader(item=PostSingleItem(), selector=p)
             # i.add_xpath('title', ['.//a[@class="title may-blank "]/text()', './/a[@class="title may-blank outbound"]/text()'], MapCompose(str.strip, str.title))
             # i.add_xpath('user','.//p[@class="tagline "]/a[1]/text()')
             # i.add_xpath('upvotes','.//div[@class="score likes"]/@title', MapCompose(int))
@@ -28,3 +22,4 @@ class butler_single(scrapy.Spider):
             # i.add_xpath('awards', ['.//a[@class="awarding-link"]/@data-count', './/a[@class="awarding-show-more-link"]/text()'], MapCompose(lambda x: format_comment(x)))
             # i.add_xpath('time', './/time/@datetime')
             yield i.load_item()
+            break
