@@ -22,7 +22,7 @@ class butler(scrapy.Spider):
             return res
         
         next_selector = response.xpath('//span[@class="next-button"]/a/@href')
-        
+
         for p in response.xpath('//div[@id="siteTable"]/div[contains(@class, "thing")]'):
             i = ItemLoader(item=PostItem(), selector=p)
             i.add_xpath('title', ['.//a[@class="title may-blank "]/text()', './/a[@class="title may-blank outbound"]/text()'], MapCompose(str.strip, str.title))

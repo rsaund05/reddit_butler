@@ -5,9 +5,7 @@ __app_name__="reddit_butler"
 __version__="0.1.0"
 
 def main():
-    #system call to spider
-    #build list of subs to gather
-    sublist = []
+    sublist = [] #list to store subreddits to crawl
     for i in sys.argv:
         if i != "app.py":
             sublist.append("https://old.reddit.com/r/" + i)

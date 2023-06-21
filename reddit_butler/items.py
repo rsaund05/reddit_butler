@@ -18,3 +18,13 @@ class PostItem(scrapy.Item):
     content_link = scrapy.Field()
     awards = scrapy.Field()
     time = scrapy.Field()
+
+class PostSingleItem(scrapy.Item):
+    title = scrapy.Field()
+    user = scrapy.Field()
+    upvotes = scrapy.Field()
+    comments = scrapy.Field()
+    subreddit = scrapy.Field()
+    content_link = scrapy.Field()
+    awards = scrapy.Field()
+    time = scrapy.Field()
