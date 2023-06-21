@@ -9,6 +9,11 @@ def main():
     subs = []
     parser = argparse.ArgumentParser(description="Reddit Butler. Scan and collect reddit data without pesky API access.")
     parser.add_argument(
+        '-d',
+        '--debug',
+        help='debug flag, for testing single post retrival'
+    )
+    parser.add_argument(
         '--subs', 
         '-s', 
         type=str,
