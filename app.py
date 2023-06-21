@@ -1,21 +1,30 @@
 import sys, getopt
 import subprocess
+import argparse
 
 __app_name__="reddit_butler"
 __version__="0.1.0"
 
 def main():
-    sublist = [] #list to store subreddits to crawl
-    for i in sys.argv:
-        if i == 'debug':
-            subprocess.run(["scrapy", "crawl", "butler_single", "-s", "CLOSESPIDER_ITEMCOUNT=1", "-O", "./output/output_single.jsonl"])
-        if i != "app.py":
-            sublist.append("https://old.reddit.com/r/" + i)
-    if len(sublist) > 0:
-        subs = ','.join(sublist) #stringified list of URLs sepereated by comma
+    subs = []
+    parser = argparse.ArgumentParser(description="Reddit Butler. Scan and collect reddit data without pesky API access.")
+    parser.add_argument(
+        '--subs', 
+        '-s', 
+        type=str,
+        nargs='+',
+        help='list of subreddits to scan',
+        default=[]
+    )
+    args = parser.parse_args()
+    for s in args.subs:
+        subs.append("https://old.reddit.com/r/" + s)
+
+    if len(subs) == 0:
+        subs_url = 'https://old.reddit.com/'
     else:
-        subs = "https://old.reddit.com/" #no inputted subreddits, crawl front page instead
-    subprocess.run(["scrapy", "crawl", "butler", "-s", "CLOSESPIDER_ITEMCOUNT=50", "-a", "start_urls=" + subs, "-O", "./output/output.jsonl"])
+        subs_url = ','.join(subs) #stringified list of URLs sepereated by comma
+    subprocess.run(["scrapy", "crawl", "butler", "-s", "CLOSESPIDER_ITEMCOUNT=50", "-a", "start_urls=" + subs_url, "-O", "./output/output.jsonl"])
 
 if __name__ == "__main__":
     main()

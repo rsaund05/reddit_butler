@@ -14,7 +14,7 @@ class PostItem(scrapy.Item):
     user = scrapy.Field()
     upvotes = scrapy.Field()
     comments = scrapy.Field()
-    comments_link = scrapy.Field()
+    #comments_link = scrapy.Field()
     subreddit = scrapy.Field()
     content_link = scrapy.Field()
     awards = scrapy.Field()
