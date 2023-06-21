@@ -15,9 +15,9 @@ Giving no subreddits will run the spider on the homepage:
 ```
 python app.py
 ```
-app.py can take a specific list of subs (NOT case sensitive) to scrape like so:
+app.py can take a specific list of subs (NOT case sensitive) by passing the -s flag like so:
 ```
-python app.py pics askreddit food
+python app.py -s pics askreddit food
 ```
 
 Data is written to 
