@@ -23,4 +23,5 @@ python app.py -s pics askreddit food
 Data is written to 
 ```
 ./output/output.jsonl
+./output/output_single.jsonl
 ```
